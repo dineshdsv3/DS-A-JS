@@ -6,15 +6,28 @@
 // Output - countUniqueValues([-2,-2,-1,-1,0,1]) => 4
 
 // Frequency Counter Pattern
-function countUniqueValues(arr) {
-	let obj1 = {};
+// function countUniqueValues(arr) {
+// 	let obj1 = {};
 
-	for (let val of arr) {
-		obj1[val] = (obj1[val] || 0) + 1;
+// 	for (let val of arr) {
+// 		obj1[val] = (obj1[val] || 0) + 1;
+// 	}
+// 	return Object.keys(obj1).length;
+// }
+
+// Multiple Pointers pattern => works only for sorted array
+function countUniqueValues(arr) {
+	if (arr.length === 0) return 0;
+	var i = 0;
+	for (var j = 1; j < arr.length; j++) {
+		if (arr[i] !== arr[j]) {
+			i++;
+			arr[i] = arr[j];
+		}
 	}
-	return Object.keys(obj1).length;
+	return i + 1;
 }
 
 console.log(countUniqueValues([1, 1, 1, 1, 1, 2]));
-console.log(countUniqueValues([1, 2, 3, 4, 5, 6, 7, 7, 1, 2, 13]));
+console.log(countUniqueValues([1, 1, 2, 3, 4, 5, 6, 7, 7, 1, 2, 13]));
 console.log(countUniqueValues([-2, -2, -1, -1, 0, 1]));
