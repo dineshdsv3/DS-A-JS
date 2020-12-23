@@ -20,6 +20,28 @@ function areThereDuplicates(...args) {
     return false
 }
 
+// Multiple Pointer Pattern
+
+// Points To Remember
+// Take the arguments by the spread operator
+// Sort the args- array by usint basic comparison
+// Take 1st index and index+1
+// Compare it and return the value
+function areThereDuplicates(...args) {
+
+    args.sort((a,b) => a > b);
+    let start = 0;
+    let next = 1;
+    while(next < args.length) {
+        if(args[start] === args[next]) {
+            return true;
+        }
+        start++;
+        next++;
+    }
+    return false;
+}
+
 console.log(areThereDuplicates(1, 2, 3));
 console.log(areThereDuplicates(1, 2, 2));
 console.log(areThereDuplicates('a', 'b', 'c', 'a', 'b', 'b'));
